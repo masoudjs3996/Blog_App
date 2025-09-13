@@ -1,5 +1,3 @@
-
-
 export type Category = {
   _id: string;
   title: string;
@@ -26,7 +24,7 @@ export type Post = {
   title: string;
   slug: string;
   category: Category;
-  type: 'free' | 'premium';
+  type: "free" | "premium";
   briefText: string;
   text: string;
   coverImage: string;
@@ -34,7 +32,7 @@ export type Post = {
   readingTime: number;
   tags: string[];
   author: Author;
-  related: RelatedPost[]; 
+  related: RelatedPostType[];
   createdAt: string;
   updatedAt: string;
   likesCount: number;
@@ -43,5 +41,7 @@ export type Post = {
   comments: Comment[];
   commentsCount: number;
 };
-
-export type RelatedPost = Pick<Post, "_id" | "title" | "slug" | "coverImageUrl">;
+export type RelatedPostType = Pick<
+  Post,
+  "_id" | "title" | "slug" | "coverImageUrl" | "author"
+>;

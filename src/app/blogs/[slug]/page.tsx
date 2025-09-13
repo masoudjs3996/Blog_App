@@ -2,6 +2,7 @@ import { PageParams } from "@models/pageParams";
 import { getPostBySlug, getPosts } from "@services/postServices";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import RelatedPost from "../_components/RelatedPost";
 
 type SinglePostProps = PageParams<"slug">;
 export const dynamicParams = false;
@@ -14,6 +15,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: SinglePostProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+
   if (!post) notFound();
   return {
     title: `پست ${post.title}`,
@@ -40,6 +42,7 @@ const SinglePost = async ({ params }: SinglePostProps) => {
             alt={post?.coverImageUrl}
           />
         </div>
+        {post?.related.length > 0 && <RelatedPost posts={post.related} />}
       </div>
     </>
   );
