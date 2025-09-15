@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  console.log(req.url);
   if (pathname.startsWith("/signin") || pathname.startsWith("/signup")) {
     const user = await middlewareAuth(req);
     if (user) return NextResponse.redirect(new URL("/", req.nextUrl));

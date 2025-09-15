@@ -10,12 +10,23 @@ export type Author = {
   avatar: string;
   avatarUrl: string;
 };
+export type User = {
+  _id: string;
+  name: string;
+  avatar: string | null | undefined;
+  avatarUrl: string | null | undefined;
+};
 
 export type Comment = {
+  content: { text: string };
+  status: number;
   _id: string;
-  text: string;
-  author: Author;
+  text?: string;
+  author?: Author;
+  user: User;
   createdAt: string;
+  openToComment: boolean;
+  answers?: Comment[];
 };
 
 export type Post = {

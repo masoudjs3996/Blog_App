@@ -20,7 +20,7 @@ async function CategoryList() {
   const {
     data: { categories },
   }: CategoryResponse = await res.json();
-  console.log(categories);
+
 
   return (
     <>

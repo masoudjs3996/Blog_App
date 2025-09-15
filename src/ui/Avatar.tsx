@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 type AvatarProps = {
-  src: string;
+  src: string | null | undefined;
   width?: number;
 };
 
@@ -12,7 +12,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, width = 24 }) => {
         src={src || "/images/avatar.png"}
         width={width}
         height={width}
-        alt={src}
+        alt={src || "avatar"}
         className="rounded-full ring-1 ring-secondary-300 ml-2"
       />
     </>

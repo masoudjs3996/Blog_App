@@ -12,7 +12,6 @@ type CategoryProps = {
 
 const CategoryPage = async ({ params, searchParams }: CategoryProps) => {
   const { categorySlug } = await params;
-  console.log(categorySlug);
 
   const searchparams = await searchParams;
   const querys = `${queryString.stringify(

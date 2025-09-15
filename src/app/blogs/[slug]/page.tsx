@@ -3,6 +3,7 @@ import { getPostBySlug, getPosts } from "@services/postServices";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import RelatedPost from "../_components/RelatedPost";
+import PostComment from "../_components/comments/PostComment";
 
 type SinglePostProps = PageParams<"slug">;
 export const dynamicParams = false;
@@ -43,6 +44,7 @@ const SinglePost = async ({ params }: SinglePostProps) => {
           />
         </div>
         {post?.related.length > 0 && <RelatedPost posts={post.related} />}
+        <PostComment post={post} />
       </div>
     </>
   );
