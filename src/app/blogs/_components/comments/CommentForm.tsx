@@ -1,16 +1,44 @@
 "use client";
-import Button from "@ui/Button";
+import { createComment } from "@lib/actions";
+import SubmitButton from "@ui/SubmissionButton";
 import TextArea from "@ui/TextArea";
-import { useState } from "react";
-
-const CommentForm = () => {
+import { useActionState, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+type CommentFormProps = {
+  postId: string;
+  parentId: string | null;
+  onClose: () => void;
+};
+const initialState: { message: string; error: string } = {
+  message: "",
+  error: "",
+};
+const CommentForm = ({ postId, parentId, onClose }: CommentFormProps) => {
   const [text, setText] = useState("");
+  const [state, formAction] = useActionState(createComment, initialState);
+  useEffect(() => {
+    const { message, error } = state;
+
+    if (message || error) {
+      if (message) toast.success(message);
+      if (error) toast.error(error);
+
+      if (message) onClose();
+    }
+  }, [state, onClose]);
+
   return (
     <>
       <div>
         <div className="flex justify-center mt-4">
           <div className="max-w-md  w-full">
-            <form className="space-y-7">
+            <form
+              // action={createComment.bind(null, postId, parentId)}
+              action={async (formData) => {
+                await formAction({ formData, postId, parentId });
+              }}
+              className="space-y-7"
+            >
               <TextArea
                 name="text"
                 label="متن نظر"
@@ -18,9 +46,7 @@ const CommentForm = () => {
                 value={text}
                 isRequired
               />
-              <div className="mt-8">
-                <Button>ثبت</Button>
-              </div>
+              <SubmitButton>تایید</SubmitButton>
             </form>
           </div>
         </div>

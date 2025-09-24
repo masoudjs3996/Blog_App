@@ -5,7 +5,6 @@ type ButtonVariant = "primary" | "secondary" | "outline" | "danger";
 type ButtonProps = {
   children: React.ReactNode;
   variant?: ButtonVariant;
-  onClick?: () => void;
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 

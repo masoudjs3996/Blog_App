@@ -23,7 +23,8 @@
       "@models/*": ["types/*"],
       "@utils/*": ["utils/*"],
       "@services/*": ["services/*"],
-      "@context/*": ["context/*"]
+      "@context/*": ["context/*"],
+      "@lib/*": ["lib/*"]
     },
     "incremental": true,
     "plugins": [
